@@ -1,17 +1,27 @@
 ﻿@page "/"
+@inject WebsiteMain.Data.CardGameService _cards
 
+<div class="text-center card card-outline-primary bg-primary" id="latestcards">
+    <div class="card-header">
+        Current Card Game
+    </div>
+    <div class="card-body">
+        <h4 class="card-title">
+            Game Number:
+            <br />
+            Latest Guess: 
+        </h4>
+        <div class="card-text">
+            <!-- Latest Card Guess Table (low data style) -->
+            I am supposed to be a table!
+            <div>
 
-<h1>Hello, world!</h1>
-
-Welcome to your new app.
-
-<SurveyPrompt Title="How is Blazor working for you?" />
-
-<div>
-    
+            </div>
+        </div>
+    </div>
 </div>
 
 @code
 {
-
+    
 }
