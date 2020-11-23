@@ -7,11 +7,13 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 using WebsiteMain.Data;
+using WebsiteMain.Database;
 
 namespace WebsiteMain
 {
@@ -30,7 +32,12 @@ namespace WebsiteMain
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddSingleton<WeatherForecastService>();
+            services.AddSingleton<WeatherForecastService>()
+                .AddDbContext<AndrewBoundsDatabaseModel>(o =>
+                    o.UseSqlite(Configuration.GetConnectionString("DefaultConnection"))
+                        .EnableDetailedErrors())
+                .AddSingleton<CardGameService>()
+                .AddLogging();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
